@@ -4,7 +4,4 @@
    <FileRef
       location = "group:AppThemeExample/AppThemeExample.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:swiftui-app-theme">
-   </FileRef>
 </Workspace>
