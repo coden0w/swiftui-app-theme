@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA5D35462ED35D2700558197 /* AppThemeUI in Frameworks */ = {isa = PBXBuildFile; productRef = FA5D35452ED35D2700558197 /* AppThemeUI */; };
 		FA8343C72ED358F9006E78D4 /* AppThemeUI in Frameworks */ = {isa = PBXBuildFile; productRef = FA8343C62ED358F9006E78D4 /* AppThemeUI */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5D35462ED35D2700558197 /* AppThemeUI in Frameworks */,
 				FA8343C72ED358F9006E78D4 /* AppThemeUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +73,7 @@
 			name = AppThemeExample;
 			packageProductDependencies = (
 				FA8343C62ED358F9006E78D4 /* AppThemeUI */,
+				FA5D35452ED35D2700558197 /* AppThemeUI */,
 			);
 			productName = AppThemeExample;
 			productReference = FA8343B12ED3585B006E78D4 /* AppThemeExample.app */;
@@ -101,7 +104,7 @@
 			mainGroup = FA8343A82ED3585B006E78D4;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				FA8343C52ED358F9006E78D4 /* XCLocalSwiftPackageReference "../swiftui-app-theme" */,
+				FA5D35442ED35D2700558197 /* XCLocalSwiftPackageReference "../../swiftui-app-theme" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FA8343B22ED3585B006E78D4 /* Products */;
@@ -343,13 +346,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		FA8343C52ED358F9006E78D4 /* XCLocalSwiftPackageReference "../swiftui-app-theme" */ = {
+		FA5D35442ED35D2700558197 /* XCLocalSwiftPackageReference "../../swiftui-app-theme" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = "../swiftui-app-theme";
+			relativePath = "../../swiftui-app-theme";
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FA5D35452ED35D2700558197 /* AppThemeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AppThemeUI;
+		};
 		FA8343C62ED358F9006E78D4 /* AppThemeUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppThemeUI;
