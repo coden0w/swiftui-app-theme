@@ -3,6 +3,44 @@
 
 import SwiftUI
 
+#if canImport(UIKit)
+import UIKit
+
+/// A global manager to handle UIWindow user interface style overrides dynamically.
+@MainActor
+final class AppThemeManager: NSObject {
+    static let shared = AppThemeManager()
+    
+    var style: AppThemeStyle = .systemDefault {
+        didSet {
+            applyTheme()
+        }
+    }
+    
+    private override init() {
+        super.init()
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(windowDidBecomeVisible(_:)),
+            name: UIWindow.didBecomeVisibleNotification,
+            object: nil
+        )
+    }
+    
+    @objc private func windowDidBecomeVisible(_ notification: Notification) {
+        guard let window = notification.object as? UIWindow else { return }
+        window.overrideUserInterfaceStyle = style.uiUserInterfaceStyle
+    }
+    
+    func applyTheme() {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        for window in windowScene.windows {
+            window.overrideUserInterfaceStyle = style.uiUserInterfaceStyle
+        }
+    }
+}
+#endif
+
 // MARK: - AppTheme
 
 /// A view wrapper that applies the user-selected app theme (Light, Dark, or System Default)
@@ -63,7 +101,16 @@ public struct AppTheme<Content: View>: View {
     /// to the entire content subtree.
     public var body: some View {
         content()
+            #if canImport(UIKit)
+            .onAppear {
+                AppThemeManager.shared.style = appThemeStyle
+            }
+            .onChange(of: appThemeStyle) { newValue in
+                AppThemeManager.shared.style = newValue
+            }
+            #else
             .preferredColorScheme(appThemeStyle.colorScheme)
+            #endif
     }
 }
 
@@ -93,4 +140,14 @@ public enum AppThemeStyle: String, CaseIterable {
         case .systemDefault:  return nil
         }
     }
+    
+    #if canImport(UIKit)
+    var uiUserInterfaceStyle: UIUserInterfaceStyle {
+        switch self {
+        case .light:          return .light
+        case .dark:           return .dark
+        case .systemDefault:  return .unspecified
+        }
+    }
+    #endif
 }
