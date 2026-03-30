@@ -10,6 +10,28 @@ import AppThemeUI
 
 struct ContentView: View {
     
+    @State private var showSheet: Bool = false
+    
+    var body: some View {
+        Button {
+            showSheet = true
+        } label: {
+            Text("Show Sheet")
+        }
+        .sheet(isPresented: $showSheet) {
+            NavigationStack {
+                SheetView()
+            }
+        }
+
+    }
+}
+
+#Preview {
+    ContentView()
+}
+
+struct SheetView: View {
     @AppStorage("AppThemeStyle") private var appThemeStyle: AppThemeStyle = .systemDefault
     var body: some View {
         VStack {
@@ -61,8 +83,5 @@ struct ContentView: View {
             Text("System Default")
         }
     }
-}
-
-#Preview {
-    ContentView()
+    
 }
